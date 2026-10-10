@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm amber + honey palette */
+  --color-brand: #b85e00;
+  --color-brand-dark: #8f4700;
+  --color-brand-light: #e08a2e;
+  --color-gold: #fff59e;
+  --color-gold-dark: #f4e67e;
+  --color-cream: #fffdf4;
+  --color-ink: #2b1d0c;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.45s ease-out both;
+  --animate-pop: pop 0.3s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tailwind ke saath MUI clash na kare */
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-gold);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-light);
+  border-radius: 9999px;
+  border: 2px solid var(--color-cream);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand);
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* Buttons par hand cursor (native default arrow hota hai) */
+button,
+[role='button'],
+a[href] {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* Reusable animated card */
+.pop-card {
+  transition: transform 0.22s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+}
+.pop-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px -18px rgba(184, 94, 0, 0.5);
+  border-color: color-mix(in srgb, var(--color-brand) 35%, transparent);
+}
